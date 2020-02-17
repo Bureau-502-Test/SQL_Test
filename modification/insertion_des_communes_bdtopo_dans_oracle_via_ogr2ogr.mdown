@@ -51,7 +51,14 @@ VALUES(
 COMMIT;
 ```
 
-2.4. Mise à jour du SRID de chaque enregistrement de la table temporaire
+2.4. Création du nouvel index spatial
+
+```
+CREATE INDEX G_GEO.*TABLE_NAME*_SIDX ON G_GEO.*TABLE_NAME*(*geom_column*)
+INDEXTYPE IS "MDSYS"."SPATIAL_INDEX" PARAMETERS('sdo_indx_dims= *2*, layer_gtype= *geometry_type*, tablespace=G_ADT_INDX, work_tablespace=DATA_TEMP');
+```
+
+2.5. Mise à jour du SRID de chaque enregistrement de la table temporaire
 
 ```
 -- Mise à jour du SRID de chaque enregistrement de la table temporaire
